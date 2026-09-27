@@ -31,4 +31,6 @@
   <button class="query-btn {{vehicleId.length === 8 ? 'query-btn-active' : ''}}" bindtap="onQuery">
     查询车辆
   </button>
+
+  <view wx:if="{{vehicleCount !== null}}" class="footer-note">本小程序已收录 {{vehicleCount}} 辆车</view>
 </view>

@@ -4,6 +4,16 @@ const { callBike, parseVehicleId } = require("../../utils/cloud.js");
 Page({
   data: {
     vehicleId: "",
+    vehicleCount: null,
+  },
+
+  // 每次回到主页都刷新收录数，扫码建了新车后返回时数字也会更新
+  onShow() {
+    callBike("countVehicles").then((r) => {
+      if (r.errCode === 0) {
+        this.setData({ vehicleCount: r.count });
+      }
+    });
   },
 
   onInput(e) {

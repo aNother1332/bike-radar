@@ -190,6 +190,16 @@ exports.main = async (event) => {
         return { errCode: 0, plate };
       }
 
+      // 收录总数：扫码建档（有车号）即算收录，车牌号可有可无
+      case "countVehicles": {
+        const r = await table("vehicles").select("vehicle_id", {
+          count: "exact",
+          head: true,
+        });
+        if (r.error) return { errCode: -1, errMsg: "统计失败: " + r.error.message };
+        return { errCode: 0, count: r.count || 0 };
+      }
+
       default:
         return { errCode: 1, errMsg: "未知操作类型" };
     }

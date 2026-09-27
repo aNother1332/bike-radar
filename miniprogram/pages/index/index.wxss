@@ -104,3 +104,11 @@
   background: #1C1C1E;
   color: #FFFFFF;
 }
+
+.footer-note {
+  margin-top: auto;
+  padding: 48rpx 16rpx 16rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #C7C7CC;
+}
