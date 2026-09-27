@@ -1,0 +1,201 @@
+/* pages/detail/detail.wxss */
+.page {
+  min-height: 100vh;
+  padding: 0 40rpx 64rpx;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  transition: background 0.4s ease;
+}
+/* 三档速度对应三种渐变 */
+.status-slow {
+  background: linear-gradient(165deg, #FF8A8A 0%, #E64545 60%, #D63031 100%);
+}
+.status-normal {
+  background: linear-gradient(165deg, #FFB75E 0%, #ED8F03 60%, #D97706 100%);
+}
+.status-fast {
+  background: linear-gradient(165deg, #4ED9A0 0%, #10B981 60%, #059669 100%);
+}
+
+.navbar {
+  padding-left: 24rpx;
+  padding-right: 24rpx;
+}
+.back-btn {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.back-icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.loading-tip {
+  margin-top: 40vh;
+  text-align: center;
+  font-size: 28rpx;
+  opacity: 0.85;
+}
+
+.status-area {
+  margin-top: 48rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.12);
+}
+.status-icon {
+  width: 128rpx;
+  height: 128rpx;
+  margin-bottom: 16rpx;
+  opacity: 0.95;
+}
+.status-label {
+  font-size: 88rpx;
+  font-weight: 700;
+  letter-spacing: 4rpx;
+}
+.status-desc {
+  margin-top: 12rpx;
+  font-size: 30rpx;
+  opacity: 0.92;
+}
+.status-sub {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  opacity: 0.75;
+}
+
+.card {
+  margin-top: 64rpx;
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  padding: 8rpx 36rpx;
+  box-shadow: 0 12rpx 40rpx rgba(0, 0, 0, 0.10);
+}
+.card-row {
+  min-height: 116rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-label {
+  font-size: 28rpx;
+  color: #8E8E93;
+}
+.card-value {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #1C1C1E;
+  letter-spacing: 2rpx;
+}
+.card-divider {
+  height: 2rpx;
+  background: #F2F2F7;
+}
+.card-input {
+  text-align: right;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #1C1C1E;
+  letter-spacing: 2rpx;
+  flex: 1;
+  margin-left: 24rpx;
+  min-height: 116rpx;
+}
+.card-input-placeholder {
+  color: #C7C7CC;
+  font-weight: 400;
+  font-size: 30rpx;
+  letter-spacing: 0;
+}
+.card-hint {
+  padding-bottom: 20rpx;
+  font-size: 22rpx;
+  color: #C7C7CC;
+  text-align: center;
+}
+
+.vote-area {
+  margin-top: 56rpx;
+}
+.vote-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  text-align: center;
+  opacity: 0.95;
+}
+.vote-row {
+  margin-top: 32rpx;
+  display: flex;
+}
+.vote-btn {
+  flex: 1;
+  padding: 36rpx 0 28rpx;
+  border-radius: 28rpx;
+  background: rgba(255, 255, 255, 0.16);
+  border: 2rpx solid rgba(255, 255, 255, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+.vote-btn + .vote-btn {
+  margin-left: 24rpx;
+}
+.vote-btn-active {
+  background: #FFFFFF;
+  border-color: #FFFFFF;
+  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.15);
+}
+.vote-icon {
+  width: 56rpx;
+  height: 56rpx;
+}
+.vote-label {
+  margin-top: 14rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+.vote-count {
+  margin-top: 6rpx;
+  font-size: 24rpx;
+  opacity: 0.8;
+}
+.vote-btn-active .vote-label {
+  color: #1C1C1E;
+}
+.vote-btn-active .vote-count {
+  color: #8E8E93;
+  opacity: 1;
+}
+.vote-hint {
+  margin-top: 28rpx;
+  text-align: center;
+  font-size: 24rpx;
+  opacity: 0.75;
+}
+
+.missing-area {
+  margin-top: 36vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.missing-text {
+  font-size: 32rpx;
+  font-weight: 600;
+  opacity: 0.9;
+}
+.missing-btn {
+  margin-top: 40rpx;
+  padding: 20rpx 72rpx;
+  border-radius: 44rpx;
+  background: rgba(0, 0, 0, 0.18);
+  font-size: 28rpx;
+}

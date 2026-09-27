@@ -1,0 +1,70 @@
+<view class="page status-{{status}}">
+  <view class="navbar" style="padding-top: {{statusBarHeight}}px;">
+    <view class="back-btn" bindtap="onBack">
+      <image class="back-icon" src="/images/icons/back.svg" mode="aspectFit" />
+    </view>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading-tip">加载中…</view>
+
+  <block wx:elif="{{exists}}">
+    <view class="status-area">
+      <image class="status-icon" src="/images/icons/{{status}}.svg" mode="aspectFit" />
+      <view class="status-label">{{statusLabel}}</view>
+      <view class="status-desc">{{statusDesc}}</view>
+      <view class="status-sub">由最近 3 次投票计算 · 平票判为普速</view>
+    </view>
+
+    <view class="card">
+      <view class="card-row">
+        <view class="card-label">车号</view>
+        <view class="card-value">{{vehicleId}}</view>
+      </view>
+      <view class="card-divider"></view>
+      <view class="card-row">
+        <view class="card-label">车牌号</view>
+        <input
+          wx:if="{{mode === 'scan'}}"
+          class="card-input"
+          type="number"
+          maxlength="6"
+          placeholder="填 6 位校园车牌"
+          placeholder-class="card-input-placeholder"
+          value="{{plateInput}}"
+          bindinput="onPlateInput"
+          bindblur="onPlateBlur"
+        />
+        <view wx:else class="card-value">{{plate || "未填写"}}</view>
+      </view>
+      <view wx:if="{{mode === 'scan'}}" class="card-hint">改动车牌号后失焦自动保存</view>
+    </view>
+
+    <view class="vote-area">
+      <view class="vote-title">{{mode === 'scan' ? '你觉得这辆车有多快？点一下投票' : '大家的投票'}}</view>
+      <view class="vote-row">
+        <view class="vote-btn {{myVote === 'slow' ? 'vote-btn-active' : ''}}" data-choice="slow" bindtap="onVote">
+          <image class="vote-icon" src="{{myVote === 'slow' ? '/images/icons/slow-c.svg' : '/images/icons/slow.svg'}}" mode="aspectFit" />
+          <view class="vote-label">慢速</view>
+          <view class="vote-count">{{counts.slow}} 人</view>
+        </view>
+        <view class="vote-btn {{myVote === 'normal' ? 'vote-btn-active' : ''}}" data-choice="normal" bindtap="onVote">
+          <image class="vote-icon" src="{{myVote === 'normal' ? '/images/icons/normal-c.svg' : '/images/icons/normal.svg'}}" mode="aspectFit" />
+          <view class="vote-label">普速</view>
+          <view class="vote-count">{{counts.normal}} 人</view>
+        </view>
+        <view class="vote-btn {{myVote === 'fast' ? 'vote-btn-active' : ''}}" data-choice="fast" bindtap="onVote">
+          <image class="vote-icon" src="{{myVote === 'fast' ? '/images/icons/fast-c.svg' : '/images/icons/fast.svg'}}" mode="aspectFit" />
+          <view class="vote-label">神速</view>
+          <view class="vote-count">{{counts.fast}} 人</view>
+        </view>
+      </view>
+      <view wx:if="{{mode === 'view'}}" class="vote-hint">查看模式：在车辆旁扫码进入，才能投票或编辑</view>
+      <view wx:else class="vote-hint">点其他选项可以改票，每人每车一票</view>
+    </view>
+  </block>
+
+  <view wx:else class="missing-area">
+    <view class="missing-text">车辆信息不存在</view>
+    <view class="missing-btn" bindtap="onBack">返回</view>
+  </view>
+</view>

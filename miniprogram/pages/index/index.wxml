@@ -1,0 +1,36 @@
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">这辆车快不快？</view>
+    <view class="hero-sub">扫码或输入车号，查看滴滴电单车的速度状态</view>
+  </view>
+
+  <button class="scan-btn" bindtap="onScan">
+    <image class="scan-icon" src="/images/icons/scan.svg" mode="aspectFit" />
+    <text>扫一扫</text>
+  </button>
+
+  <view class="divider">
+    <view class="divider-line"></view>
+    <text class="divider-text">或</text>
+    <view class="divider-line"></view>
+  </view>
+
+  <view class="input-card">
+    <input
+      class="plate-input"
+      type="number"
+      maxlength="8"
+      placeholder="输入 8 位车号"
+      placeholder-class="input-placeholder"
+      value="{{vehicleId}}"
+      bindinput="onInput"
+      bindconfirm="onQuery"
+      confirm-type="done"
+    />
+  </view>
+  <button class="query-btn {{vehicleId.length === 8 ? 'query-btn-active' : ''}}" bindtap="onQuery">
+    查询车辆
+  </button>
+
+  <view class="footer-note">扫二维码进入可投票并编辑车牌号；手动输入仅可查看。</view>
+</view>

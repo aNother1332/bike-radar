@@ -1,0 +1,16 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/detail/detail"
+  ],
+  "window": {
+    "backgroundColor": "#F2F2F7",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F2F2F7",
+    "navigationBarTitleText": "快车雷达",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents"
+}
