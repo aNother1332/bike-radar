@@ -87,6 +87,8 @@ Page({
 
   // 复制车号并跳转青桔「车号开车」页
   onConfirmFind() {
+    // 审计日志：记录本次找车行为（不阻塞跳转）
+    callBike("logFind", { vehicleId: this.data.findVehicleId });
     wx.setClipboardData({
       data: this.data.findVehicleId,
       success: () => {
