@@ -45,6 +45,11 @@ Page({
     });
   },
 
+  // 进入车辆列表页
+  onOpenList() {
+    wx.navigateTo({ url: "/pages/list/list" });
+  },
+
   // 输入车号：仅查询已有车辆，以 view 模式进入（只读）
   onQuery() {
     const vehicleId = (this.data.vehicleId || "").trim();

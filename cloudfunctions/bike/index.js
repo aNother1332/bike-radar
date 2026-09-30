@@ -200,6 +200,39 @@ exports.main = async (event) => {
         return { errCode: 0, count: r.count || 0 };
       }
 
+      // 车辆列表：全部车辆及各自速度状态；神速在前、普速次之、慢速最后，同状态按车号升序
+      case "listVehicles": {
+        const v = await table("vehicles").select().limit(1000);
+        if (v.error) return { errCode: -1, errMsg: "查询失败: " + v.error.message };
+        // 全局按时间倒序取投票，再按车号分组取前 3 条计算状态（校园规模单次 1000 条够用）
+        const r = await table("votes")
+          .select()
+          .order("updated_at", { ascending: false })
+          .limit(1000);
+        if (r.error) return { errCode: -1, errMsg: "查询失败: " + r.error.message };
+        const votesByVehicle = {};
+        (r.data || []).forEach((row) => {
+          (votesByVehicle[row.vehicle_id] =
+            votesByVehicle[row.vehicle_id] || []).push(row);
+        });
+        const STATUS_ORDER = { fast: 0, normal: 1, slow: 2 };
+        const list = (v.data || []).map((veh) => {
+          const votes = (votesByVehicle[veh.vehicle_id] || [])
+            .slice(0, 3)
+            .map((x) => x.choice);
+          return {
+            vehicleId: veh.vehicle_id,
+            plate: veh.plate || "",
+            status: computeStatus(votes),
+          };
+        });
+        list.sort((a, b) => {
+          const d = STATUS_ORDER[a.status] - STATUS_ORDER[b.status];
+          return d !== 0 ? d : a.vehicleId.localeCompare(b.vehicleId);
+        });
+        return { errCode: 0, list };
+      }
+
       default:
         return { errCode: 1, errMsg: "未知操作类型" };
     }

@@ -1,0 +1,26 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="tip">加载中…</view>
+
+  <view wx:elif="{{list.length === 0}}" class="tip">暂无收录车辆，去扫一辆吧</view>
+
+  <block wx:else>
+    <view class="list">
+      <view
+        class="row"
+        wx:for="{{list}}"
+        wx:key="vehicleId"
+        data-vehicle-id="{{item.vehicleId}}"
+        bindtap="onItemTap"
+        hover-class="row-hover"
+      >
+        <view class="row-main">
+          <view class="vehicle-id">{{item.vehicleId}}</view>
+          <view wx:if="{{item.plate}}" class="plate">车牌 {{item.plate}}</view>
+        </view>
+        <view class="badge badge-{{item.statusCls}}">{{item.statusLabel}}</view>
+        <view class="chevron">›</view>
+      </view>
+    </view>
+    <view class="footer">共 {{list.length}} 辆 · 神速在前，同档按车号升序</view>
+  </block>
+</view>

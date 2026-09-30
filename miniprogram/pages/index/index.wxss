@@ -110,5 +110,12 @@
   padding: 48rpx 16rpx 16rpx;
   text-align: center;
   font-size: 24rpx;
+  /* 比普通说明文字略深，配合箭头暗示可点击 */
+  color: #AEAEB2;
+}
+.footer-note-hover {
+  opacity: 0.5;
+}
+.footer-chevron {
   color: #C7C7CC;
 }

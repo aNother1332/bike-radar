@@ -32,5 +32,8 @@
     查询车辆
   </button>
 
-  <view wx:if="{{vehicleCount !== null}}" class="footer-note">本小程序已收录 {{vehicleCount}} 辆车</view>
+  <view class="footer-note" hover-class="footer-note-hover" bindtap="onOpenList">
+    <text>本小程序已收录 {{vehicleCount}} 辆车</text>
+    <text class="footer-chevron"> ›</text>
+  </view>
 </view>

@@ -1,0 +1,80 @@
+/* pages/list/list.wxss */
+.page {
+  min-height: 100vh;
+  background: #F2F2F7;
+  padding: 24rpx 0 60rpx;
+  box-sizing: border-box;
+}
+
+.tip {
+  margin-top: 40vh;
+  text-align: center;
+  color: #8E8E93;
+  font-size: 28rpx;
+}
+
+.list {
+  background: #FFFFFF;
+  margin: 0 32rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  padding: 30rpx 32rpx;
+  border-bottom: 2rpx solid #F2F2F7;
+}
+.row:last-child {
+  border-bottom: none;
+}
+.row-hover {
+  background: #F7F7F9;
+}
+
+.row-main {
+  flex: 1;
+}
+.vehicle-id {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #1C1C1E;
+  letter-spacing: 2rpx;
+}
+.plate {
+  margin-top: 6rpx;
+  font-size: 24rpx;
+  color: #8E8E93;
+}
+
+/* 状态徽标颜色与详情页三色渐变一致 */
+.badge {
+  padding: 8rpx 22rpx;
+  border-radius: 999rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+.badge-fast {
+  background: #10B981;
+}
+.badge-normal {
+  background: #ED8F03;
+}
+.badge-slow {
+  background: #E64545;
+}
+
+.chevron {
+  margin-left: 20rpx;
+  color: #C7C7CC;
+  font-size: 32rpx;
+}
+
+.footer {
+  margin-top: 32rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #C7C7CC;
+}
