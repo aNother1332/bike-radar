@@ -42,11 +42,6 @@
   color: #1C1C1E;
   letter-spacing: 2rpx;
 }
-.plate {
-  margin-top: 6rpx;
-  font-size: 24rpx;
-  color: #8E8E93;
-}
 
 /* 状态徽标颜色与详情页三色渐变一致 */
 .badge {
@@ -70,11 +65,4 @@
   margin-left: 20rpx;
   color: #C7C7CC;
   font-size: 32rpx;
-}
-
-.footer {
-  margin-top: 32rpx;
-  text-align: center;
-  font-size: 24rpx;
-  color: #C7C7CC;
 }

@@ -15,12 +15,10 @@
       >
         <view class="row-main">
           <view class="vehicle-id">{{item.vehicleId}}</view>
-          <view wx:if="{{item.plate}}" class="plate">车牌 {{item.plate}}</view>
         </view>
         <view class="badge badge-{{item.statusCls}}">{{item.statusLabel}}</view>
         <view class="chevron">›</view>
       </view>
     </view>
-    <view class="footer">共 {{list.length}} 辆 · 神速在前，同档按车号升序</view>
   </block>
 </view>
