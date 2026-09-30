@@ -1,24 +1,68 @@
 <view class="page">
+  <view class="warning-banner">
+    <view class="warning-title">⚠️ 使用找车功能前请先仔细阅读</view>
+    <view class="warning-text">找车功能通过青桔「车号开车」开锁后立即关锁实现，可能存在的问题：</view>
+    <view class="warning-text">1. 若目标车辆正被人骑行，你的操作会立即中断对方骑行，对方将被留在半路；</view>
+    <view class="warning-text">2. 被中断的骑行人可能被青桔判定为“未在停车区域内还车”，从而被**收取调度费**，由此产生的纠纷与费用与你相关；</view>
+    <view class="warning-text">3. 开锁期间车辆由你的账号负责，可能被路人骑走；频繁开锁关锁可能导致你的账号受限。</view>
+    <view class="warning-text">点击「去找车」后会再次弹出完整风险说明与免责声明。</view>
+  </view>
+
   <view wx:if="{{loading}}" class="tip">加载中…</view>
 
   <view wx:elif="{{list.length === 0}}" class="tip">暂无收录车辆，去扫一辆吧</view>
 
-  <block wx:else>
-    <view class="list">
-      <view
-        class="row"
-        wx:for="{{list}}"
-        wx:key="vehicleId"
-        data-vehicle-id="{{item.vehicleId}}"
-        bindtap="onItemTap"
-        hover-class="row-hover"
-      >
-        <view class="row-main">
-          <view class="vehicle-id">{{item.vehicleId}}</view>
-        </view>
-        <view class="badge badge-{{item.statusCls}}">{{item.statusLabel}}</view>
-        <view class="chevron">›</view>
+  <view wx:else class="list">
+    <view class="row" wx:for="{{list}}" wx:key="vehicleId">
+      <view class="row-main">
+        <view class="vehicle-id">{{item.vehicleId}}</view>
       </view>
+      <view
+        wx:if="{{item.statusCls === 'fast'}}"
+        class="find-link"
+        hover-class="find-link-hover"
+        data-vehicle-id="{{item.vehicleId}}"
+        bindtap="onFindTap"
+      >
+        <text>去找车</text>
+        <text class="find-chevron"> ›</text>
+      </view>
+      <view class="badge badge-{{item.statusCls}}">{{item.statusLabel}}</view>
     </view>
-  </block>
+  </view>
+
+  <!-- 找车强制阅读弹窗 -->
+  <view wx:if="{{findModalShown}}" class="modal-mask" bindtap="onModalCancel">
+    <view class="modal-card" catchtap="noop">
+      <view class="modal-title">⚠️ 找车前必读</view>
+      <scroll-view
+        class="modal-scroll"
+        scroll-y
+        bindscrolltolower="onModalReachBottom"
+        lower-threshold="60"
+      >
+        <view class="modal-body">
+          <view class="m-sec">找车是怎么工作的</view>
+          <view class="m-text">通过青桔「车号开车」输入车号触发开锁，随即关锁（开锁后 1 分钟内关锁免费），再借助青桔行程轨迹确认车辆当前所在位置。车号已为你自动复制，粘贴即可。</view>
+
+          <view class="m-sec">你必须知晓的风险</view>
+          <view class="m-text">1. 若这辆车当前正被人骑行，你的开锁操作会立即终止对方的行程，对方将被留在半路；</view>
+          <view class="m-text">2. 被中断的骑行人可能被青桔判定为“未在停车区域内还车”，从而被收取调度费，由此产生的纠纷与费用归属与你相关；</view>
+          <view class="m-text">3. 开锁后到关锁前，车辆处于可被任何人骑走的状态，期间产生的费用计入你的账号；</view>
+          <view class="m-text">4. 若超过免费时限未关锁，将产生正常骑行费用；</view>
+          <view class="m-text">5. 频繁的“开锁-关锁”会被判定为异常用车，可能导致你的青桔账号被限流或封禁。</view>
+
+          <view class="m-sec">免责声明</view>
+          <view class="m-text">本小程序（你科神车）仅提供车号复制与页面跳转工具，不参与、不代理任何开锁、关锁或骑行行为。因使用找车功能产生的一切费用（包括但不限于调度费、骑行费）、账号风险、与他人的纠纷及对任何第三方造成的损失，均由使用者本人自行承担，与开发者无关。</view>
+          <view class="m-text">继续操作即表示你已阅读、理解并自愿承担上述全部风险。</view>
+        </view>
+        <view class="modal-bottom-pad">
+          <view wx:if="{{!findBtnRevealed}}" class="m-hint">↓ 继续上滑阅读完整免责声明</view>
+          <button wx:if="{{findBtnRevealed}}" class="modal-go-btn" bindtap="onConfirmFind">去找车</button>
+          <view wx:else class="modal-go-btn-disabled">去找车</view>
+        </view>
+      </scroll-view>
+      <view class="modal-cancel" bindtap="onModalCancel">取消</view>
+    </view>
+  </view>
 </view>
